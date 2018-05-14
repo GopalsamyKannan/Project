@@ -1,4 +1,4 @@
 [
-{"username":"abc", "password":"test"},
-{"username":"abc", "password":"test"}
+{"email": "sydney@fife","password": "pistol"},
+{"email": "user1@one","password": "pistol"}
 ]
