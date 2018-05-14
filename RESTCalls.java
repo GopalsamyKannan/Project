@@ -49,8 +49,7 @@ public class RESTCalls {
 		
 		Assert.assertTrue("Registration is not Successful", token.equals("QpwL5tke4Pnpja7X"));
 		//Assert.assertEquals("Registration Successful", token, "QpwL5tke4Pnpja7X");	
-	} 
-	
+	}
 	
 	@Test(priority=1)
 	public void Register_Success_For_Multiple_Users() throws IOException, ParseException
@@ -92,7 +91,6 @@ public class RESTCalls {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	@Test(priority=2)
 	public void Create_Single_User()
@@ -176,5 +174,30 @@ public class RESTCalls {
 		Assert.assertTrue("Login is not Successful", token.equals("QpwL5tke4Pnpja7X"));
 		//Assert.assertEquals("Login Successful", token, "QpwL5tke4Pnpja7X");
 	}
-	
+
+	@Test(priority=5)
+	public void Login_Unsuccess()
+	{
+		RestAssured.baseURI = "https://reqres.in";
+		RequestSpecification request = RestAssured.given(); 
+		request.header("Content-Type", "application/json");
+		
+		//Login by single user by single JSONObject
+		JSONObject json = new JSONObject();
+		json.put("email", "User3@icici");
+		
+		request.body(json.toJSONString());
+		Response resp = request.post("/api/login");
+		int respCode = resp.getStatusCode();
+		System.out.println("Response Code for Unsuccess Login POST Call is: "+respCode);
+		Assert.assertEquals(400, respCode);
+		String responseBody = resp.getBody().asString();
+		System.out.println("Response of Unsuccessful Login : "+responseBody);
+		
+		JsonPath jsonPathEvaluator = resp.jsonPath();
+		String error = jsonPathEvaluator.get("error");
+		System.out.println("Error message for unsuccessful login call: "+error);
+		
+		//Assert.assertFalse("Login is not Successful", error.equalsIgnoreCase("Missing password"));
+	}
 }
