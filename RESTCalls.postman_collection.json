@@ -1,0 +1,196 @@
+{
+	"variables": [],
+	"info": {
+		"name": "RESTCalls",
+		"_postman_id": "f2418ca9-c64e-d0fb-5ff5-17fe76bff192",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Single_User_Registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code verified\"] = responseCode.code === 201;",
+							"",
+							"tests[\"parameter verified\"] = responseBody.has(\"token\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://reqres.in/api/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"user11@sbi\",\r\n    \"password\": \"test@abc\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UserCreation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code verified\"] = responseCode.code === 201;",
+							"",
+							"tests[\"Parameter verified\"] = responseBody.has(\"createdAt\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://reqres.in/api/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"leader\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code verified\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Parameter verified\"] = responseBody.has(\"updatedAt\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://reqres.in/api/users/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"zion resident\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login Unsuccess",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code verified\"] = responseCode.code === 400;",
+							"",
+							"tests[\"parameter verified\"] = responseBody.has(\"Missing password\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://reqres.in/api/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"peter@klaven\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code verified\"] = responseCode.code === 200;",
+							"",
+							"tests[\"parameter verified\"] = responseBody.has(\"token\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://reqres.in/api/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"peter@klaven\",\r\n    \"password\": \"cityslicka\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
